@@ -1,16 +1,25 @@
 (() => {
   const canvas = document.querySelector('#liquid');
-  const brand = document.querySelector('.header .wordmark');
+  const name = document.querySelector('.hero-name');
   const pointer = {x: .65, y: .35};
   const smooth = {...pointer};
   const waves = new Float32Array(12);
   let nextWave = 0, time = 0, frame = 0, previous = 0;
   const still = () => document.body.classList.contains('motion-paused');
   const aim = event => {
+    if (!still()) {
+      const rect = name.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < innerHeight) {
+        name.style.setProperty('--light-x', (event.clientX - rect.left) + 'px');
+        name.style.setProperty('--light-y', (event.clientY - rect.top) + 'px');
+        name.style.setProperty('--ray-angle', (10 + 22 * event.clientX / innerWidth) + 'deg');
+      }
+    }
     pointer.x = event.clientX / innerWidth;
     pointer.y = 1 - event.clientY / innerHeight;
   };
   window.addEventListener('pointermove', aim, {passive:true});
+  window.addEventListener('pointerdown', aim, {passive:true});
   window.addEventListener('click', event => {
     if (still() || !event.detail) return;
     aim(event);
@@ -24,8 +33,6 @@
       if (still()) return;
       const x = event.clientX / innerWidth * 100;
       document.body.style.setProperty('--sway', x + '%');
-      brand.style.setProperty('--beam-x', x + '%');
-      brand.style.setProperty('--beam-angle', (75 + x * .35) + 'deg');
     }, {passive:true});
     window.addEventListener('click', event => {
       if (still() || !event.detail) return;
@@ -101,8 +108,6 @@
       if(!still()){
         time+=Math.min((now-(previous||now))/1000,.05);
         smooth.x+=(pointer.x-smooth.x)*.085; smooth.y+=(pointer.y-smooth.y)*.085;
-        brand.style.setProperty('--beam-angle',(70+smooth.x*35-smooth.y*12)+'deg');
-        brand.style.setProperty('--beam-x',(smooth.x*85+5)+'%');
       }
       previous=now;
       gl.uniform2f(res,w,h); gl.uniform2f(cur,smooth.x,smooth.y); gl.uniform1f(clk,time);

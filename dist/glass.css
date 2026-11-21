@@ -34,3 +34,19 @@ body{background:#07090b;isolation:isolate;color:#f7f5ef}
 @keyframes surface-ring{from{transform:translate(-50%,-50%) scale(.1)}to{transform:translate(-50%,-50%) scale(80);opacity:0}}
 @keyframes surface-drift{to{background-position:100% 65%}}
 body.motion-paused #liquid{animation-play-state:paused}
+/* Opening title and its local pool of light. */
+.hero{height:calc(100svh - 96px);min-height:32rem;display:grid;place-items:center}
+.hero-top{position:absolute;inset:28px 4% auto}
+.hero-content{margin:0;width:100%;max-width:none;text-align:center}
+.hero .hero-name{--light-x:49%;--light-y:48%;--ray-angle:21deg;position:relative;isolation:isolate;display:inline-block;margin:0;font:900 clamp(3rem,18vw,18rem)/1 Arial,Helvetica,sans-serif;letter-spacing:-.075em;padding-right:.075em;color:#515357;background:radial-gradient(ellipse clamp(76px,13vw,200px) clamp(75px,12vw,175px) at var(--light-x) var(--light-y),#fff9e6 2%,#e8d6b5 21%,#bab3aa 39%,#66696b 66%,#404348 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-name::before{content:'';position:absolute;pointer-events:none;inset:0;z-index:-1;background:repeating-linear-gradient(var(--ray-angle),transparent 0 8px,#f7dcb829 10px,transparent 14px 23px);mask-image:radial-gradient(ellipse 18% 78% at var(--light-x) var(--light-y),#0009,transparent);filter:blur(2px)}
+.surname{margin:.35rem 0 0;text-transform:uppercase;letter-spacing:.42em;font-size:clamp(.72rem,1.1vw,1.1rem);color:#c7bfaf}
+.hero-bottom{justify-content:center;margin:clamp(20px,3vw,40px) auto 0;gap:clamp(18px,4vw,54px)}
+.hero-bottom p{text-align:left}.hero #lens{opacity:.23}.hero .lens-caption{top:auto;bottom:12%;right:4%}
+.collection .film-grid{align-items:start}
+.collection .film-visual{aspect-ratio:var(--film-ratio);width:100%;border:0}
+.collection .film-visual video{display:block;width:100%;height:100%;object-fit:contain;transform:none}
+#detail-video{margin-inline:auto;width:auto;height:auto;max-width:100%;max-height:65svh;object-fit:contain}
+@media(max-width:650px){.hero{height:calc(100svh - 78px);min-height:31rem}.hero-top{inset:24px 5% auto}.hero-bottom{display:grid;justify-items:center;gap:15px}.hero-bottom p{text-align:center}.hero-bottom .round-link{margin:0}.hero .lens-caption{display:none}}
+@media(max-height:590px){.hero .lens-caption{display:none}}
+@media(forced-colors:active){.hero .hero-name{color:CanvasText;-webkit-text-fill-color:CanvasText}}
