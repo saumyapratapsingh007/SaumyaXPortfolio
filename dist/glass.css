@@ -1,0 +1,36 @@
+
+/* A fixed liquid surface runs underneath the translucent page. */
+body{background:#07090b;isolation:isolate;color:#f7f5ef}
+#liquid{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 73% 38%,#263139,#080a0c 65%)}
+.header,.ticker,.filters,.film-card,.about-body,.practice-list details,.experience-list article,.system-art,.socials a,dialog,.round-link,.contact-bottom button,.motion-button,.nav-contact,.filters button,.close-dialog,.film-open,.text-link,.tags span,.collection-head a{
+ background:linear-gradient(145deg,rgba(249,250,255,.105),rgba(84,92,108,.08) 45%,rgba(15,20,28,.38));
+ border:1px solid rgba(228,235,247,.21);box-shadow:inset 0 1px 0 #ffffff16,0 9px 28px #0002;
+ backdrop-filter:blur(14px) saturate(1.25);-webkit-backdrop-filter:blur(14px) saturate(1.25)
+}
+.header{border-radius:24px;height:auto;min-height:78px;margin:14px 3vw 0;padding:12px clamp(14px,2.8vw,46px);gap:clamp(8px,2vw,30px);background-color:#101318a8}
+.header .wordmark{--beam-x:48%;--beam-angle:103deg;position:relative;isolation:isolate;display:inline-grid;line-height:.87;text-transform:uppercase;font:900 clamp(20px,2.1vw,36px)/.88 Arial,sans-serif;letter-spacing:-.065em;flex-shrink:0}
+.header .wordmark strong,.header .wordmark b{position:relative;background:linear-gradient(var(--beam-angle),#e0c4a4 8%,#fff var(--beam-x),#acc1c9 85%);background-clip:text;-webkit-background-clip:text;color:transparent}
+.header .wordmark b{font-size:.58em;letter-spacing:.085em;margin-top:.35em}
+.header .wordmark:before{content:'';position:absolute;inset:-40% -35%;z-index:-1;pointer-events:none;transform:skewX(-12deg);background:repeating-conic-gradient(from var(--beam-angle) at var(--beam-x) 120%,transparent 0deg 4deg,#ffeecc44 5deg,transparent 8deg 13deg);mask-image:radial-gradient(ellipse,#0008,transparent 72%);filter:blur(2px)}
+.hero{background:transparent}.work,.about,.practice,.experience,.systems,.contact{background:linear-gradient(125deg,#11151b6e,#080a0f26);color:#f7f5ef;border-top:1px solid #c6d7f021}
+.contact{background:linear-gradient(125deg,#76412d77,#0d101766)}.contact .eyebrow,.contact-bottom,.contact-bottom a,.socials a{color:#f6dfcd}.contact-title em,h1 span{color:#ff986e}
+.film-card,.practice-list details,.experience-list article,.about-body{border-radius:20px;padding:clamp(12px,1.5vw,24px)}
+.film-card{background-color:#10141a65;backdrop-filter:none}.film-visual{border-radius:12px}.film-caption{padding:8px 4px}
+.practice-list details,.experience-list article{margin-bottom:12px}.practice-list summary{border:0}.about-body{align-self:start}
+.filters,.round-link,.collection-head a,.text-link{border-radius:99px;padding:8px 14px}.round-link{gap:12px}.round-link i{width:36px;height:36px}
+.filters{padding:4px}.filters button.active{background:#ead6c6;color:#191714}.header nav{gap:clamp(12px,3vw,42px)}
+.socials a,.contact-bottom button{color:#f8e0d2;border:1px solid #fff4;border-radius:30px;padding:10px 18px}
+.contact-bottom,.socials{flex-wrap:wrap}.system-art{background-color:#171b20b3}dialog{background-color:#13171be8;border-radius:20px}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .film-card,.socials a,.round-link,.text-link{transition:transform .25s,border-color .25s}
+ .film-card:hover,.socials a:hover,.round-link:hover,.text-link:hover{transform:translateY(-3px);border-color:#ffd8ab88}
+}
+@media(max-width:850px){.about,.experience,.system-inner{grid-template-columns:1fr;gap:2rem}.hero{min-height:640px}.section{padding-inline:5vw}.film-grid{gap:16px}}
+@media(max-width:650px){.header{min-height:65px;margin:8px 3vw 0;border-radius:18px}.header nav{font-size:12px}.hero-content{margin-top:175px}.hero-bottom p{font-size:14px}.filters{border-radius:16px}.film-grid{grid-template-columns:minmax(0,1fr)}.collection-head a{font-size:12px}.contact-bottom{gap:12px}.film-caption h3{font-size:20px}.section-heading>p{font-size:14px}}
+@media(max-width:360px){.header{gap:6px;padding-inline:10px}.header nav{gap:8px}.nav-contact{padding:8px}.hero-foot{gap:8px}.contact-title>span{font-size:44px}}
+
+.liquid-fallback #liquid{background:radial-gradient(ellipse at var(--sway,65%) 30%,#303941,transparent 55%),repeating-radial-gradient(ellipse at 14% 140%,#07090c 2%,#282b30 12%,#101318 22%);background-size:125% 125%;animation:surface-drift 12s ease-in-out infinite alternate}
+.fallback-wave{position:fixed;z-index:8;width:8px;height:8px;pointer-events:none;border:1px solid #e2d5c8aa;border-radius:50%;animation:surface-ring 1.3s ease-out forwards}
+@keyframes surface-ring{from{transform:translate(-50%,-50%) scale(.1)}to{transform:translate(-50%,-50%) scale(80);opacity:0}}
+@keyframes surface-drift{to{background-position:100% 65%}}
+body.motion-paused #liquid{animation-play-state:paused}
